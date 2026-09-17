@@ -1,0 +1,7 @@
+# kept local only
+teaching-edition/
+teaching-notes/
+dist/notes-artifact.html
+
+# OS files
+.DS_Store
