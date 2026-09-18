@@ -137,9 +137,11 @@ topic({
   question: "What is a GPU, and why do LLMs run on one?",
   render: () => `
     ${say(
-      "A <b>processor</b> is a chip that follows very simple instructions, extremely fast: <i>add these two numbers</i>, <i>multiply those two</i>, <i>store the result here</i>. Every program, including an LLM, is built from billions of these tiny steps.",
-      "A <b>CPU</b> (the main processor in every computer) has a <b>few very powerful cores</b>. A core is one worker inside the chip. CPU cores are great at complicated tasks with lots of decisions, done one after another.",
-      "A <b>GPU</b> (Graphics Processing Unit) has <b>thousands of simpler cores</b>. Each one is less clever, but they all do the <b>same simple task at the same time</b> on different numbers. GPUs were built for graphics, where every pixel on screen needs the same maths."
+      "<b>What is a processor?</b> A chip that does very small steps of maths, billions of times per second: <i>add these two numbers</i>, <i>multiply those two</i>, <i>store the result here</i>. Every program, including an LLM, is just a very long list of these tiny steps. The real question is <b>how many steps a chip can do at the same time</b>.",
+      "<b>CPU: a few experts.</b> A CPU (the main processor in every computer) has a <b>few powerful cores</b>, usually 8 to 128. A <b>core</b> is one independent worker inside the chip. Each CPU core is like an expert: fast, flexible and good at jobs full of decisions (<i>if this, do that, otherwise do something else</i>). Several programs can run at once, one per core, but with only a handful of cores a CPU works on <b>tens of things at the same moment</b>.",
+      "<b>GPU: a huge team doing the same thing.</b> A GPU (Graphics Processing Unit) has <b>thousands of simpler cores</b>. Each one is less flexible than a CPU core, but they all carry out the <b>same instruction at the same time</b>, each on its own piece of data. So a GPU works on <b>tens of thousands of things at the same moment</b>.",
+      "<b>Why graphics, and why LLMs?</b> GPUs were built for graphics: a screen has millions of pixels and every pixel needs the same calculation, so giving each pixel its own worker is ideal. An LLM has exactly the same shape of problem: one token of a 70B-class model needs about <b>140 billion multiply-and-add steps</b>, and most of them don't depend on each other.",
+      "<b>In one line:</b> a CPU is a few experts who can handle any job; a GPU is a huge team that does one simple job on lots of data at once."
     )}
     ${see("How exactly does a GPU split a real problem across its cores?", `
       <div class="btn-row">${seg("g1-prob", [["photo", "Brighten a photo (64 pixels)"], ["matmul", "Multiply matrices, like an LLM layer (16 numbers)"]], "photo")}</div>
@@ -180,7 +182,7 @@ topic({
       Thousands of cores working together → a small fraction of a second per token</div>`)}
     ${tech(`<ul>
       <li><b>Core:</b> an independent processing unit inside a chip that executes instructions.</li>
-      <li><b>CPU:</b> few (typically 8–128) complex cores, optimized for low latency on varied, branching tasks.</li>
+      <li><b>CPU:</b> few (typically 8–128) complex cores, each optimized to run one instruction stream with low latency on varied, branching tasks. Cores run in parallel, so a CPU handles tens of tasks at once.</li>
       <li><b>GPU:</b> thousands of simpler cores, optimized for <b>throughput</b> on data-parallel tasks: the same operation applied to many data elements (SIMD / SIMT execution).</li>
       <li>A GPU is an <b>accelerator</b>: the CPU still runs the program and hands heavy maths to the GPU.</li>
     </ul>`)}
