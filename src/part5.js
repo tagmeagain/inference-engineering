@@ -24,7 +24,7 @@ topic({
       "“Newer is faster” hides the real story. A GPU generation can improve <b>five different things</b>, and each one fixes a <b>different bottleneck</b>.",
       "If your workload is memory-bound, more compute barely helps. If it's compute-bound, more bandwidth barely helps. So first ask: <b>what is my workload waiting on?</b>"
     )}
-    ${see("Which dimension fixes which bottleneck? Pick a workload.", `
+    ${see("Which dimension fixes which bottleneck?", `
       <div class="btn-row" id="t24-work">
         ${[["chat", "Chat with a large model, few users"], ["rag", "Very long prompts (RAG, documents)"], ["many", "Many users, long conversations"], ["huge", "Model too big for one GPU"]].map(([k, t], i) => `<button type="button" class="btn ${i === 0 ? "on" : ""}" data-k="${k}">${t}</button>`).join("")}
       </div>
@@ -83,7 +83,7 @@ topic({
   question: "What does each generation make possible that the last one didn't?",
   render: () => `
     ${say("Each generation pushes several dimensions forward at once. What matters isn't the spec sheet; it's what those improvements <b>unlock</b>: bigger models, longer contexts, more users, lower latency.")}
-    ${see("How did GPU generations change what inference can do? Click a GPU.", `
+    ${see("How did GPU generations change what inference can do?", `
       <div class="arch-seq" id="t25-gens"></div>
       <div class="stage-panel" id="t25-detail"></div>
       <p class="c-muted" style="font-size:.82rem">${illus("Relative, qualitative levels")} Dots compare generations loosely; they are not measured specs. Memory sizes are the common configurations.</p>`)}

@@ -147,7 +147,7 @@ topic({
   num: null, title: "The whole story",
   question: "How does it all connect, from prompt to token?",
   render: () => `
-    ${say("Every topic in this course is one link in a single chain. Press play to walk through it, or click any link to revisit that topic.")}
+    ${say("Every topic in this course is one link in a single chain.")}
     ${see("How does it all fit together?", `
       <div class="btn-row"><button type="button" class="btn primary" id="st-play">▶ Walk the chain</button></div>
       <div class="chain-big" id="st-chain"></div>`, "The chain")}

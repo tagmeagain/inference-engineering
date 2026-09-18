@@ -302,7 +302,7 @@ topic({
   render: () => `
     ${say(
       "A GPU has two kinds of parts: parts that <b class='c-compute'>compute</b> (do arithmetic) and parts that <b class='c-memory'>remember</b> (hold numbers). Plus connections to the outside world.",
-      "We'll build the GPU up piece by piece. For each part: what it is, how big and fast it is, and what it does for an LLM. Press <b>Play</b> or step through."
+      "We'll build the GPU up piece by piece. For each part: what it is, how big and fast it is, and what it does for an LLM."
     )}
     ${see("What does each part of the GPU do?", `
       ${player("g2-pl")}
@@ -364,7 +364,7 @@ topic({
           <div class="tws"><b>32 threads</b><span>one per output number</span></div><span class="arr">→</span>
           <div class="tws"><b>4 warps</b><span>8 threads each, run in lockstep</span></div><span class="arr">→</span>
           <div class="tws"><b>2 SMs</b><span>each runs its warps on its cores</span></div>
-        </div><p class="c-muted" style="font-size:.85rem">Step through this in detail in <b>“How does one multiply become threads and warps?”</b> below.</p>`;
+        </div><p class="c-muted" style="font-size:.85rem">Shown in detail in <b>“How does one multiply become threads and warps?”</b> below.</p>`;
       }
       if (b.level !== undefined) {
         const lv = [["Registers", 4, 100], ["SRAM", 18, 80], ["L2 cache", 40, 55], ["HBM", 100, 30]];
@@ -459,7 +459,7 @@ topic({
     ${say(
       "Almost every step inside a Transformer is a matrix multiplication, <b>Y = X × W</b>: the token's numbers <b>X</b> times a weight matrix <b>W</b>.",
       "A multiplication happens inside a core, and a core can only multiply numbers that are <b>physically inside it at that moment</b>.",
-      "But W is not in the core. It is stored in <b class='c-memory'>HBM</b>, the memory chips beside the GPU chip. So every operation is really <b>two jobs</b>: <b class='c-memory'>1. bring the numbers to the core</b>, then <b class='c-compute'>2. do the arithmetic</b>. Both take time. Press <b>Play</b> to follow the numbers."
+      "But W is not in the core. It is stored in <b class='c-memory'>HBM</b>, the memory chips beside the GPU chip. So every operation is really <b>two jobs</b>: <b class='c-memory'>1. bring the numbers to the core</b>, then <b class='c-compute'>2. do the arithmetic</b>. Both take time."
     )}
     ${see("How do X and W get from memory to the circuits that multiply them?", `
       ${player("t6-pl")}
@@ -700,7 +700,7 @@ topic({
   render: () => `
     ${say(
       "Generating one token means running the token through every layer of the model. Each step of a layer is done by specific parts of the GPU: <b class='c-memory'>memory parts</b> bring the weights and KV cache to the chip, and <b class='c-compute'>compute parts</b> do the maths.",
-      "Press <b>Play</b> to follow one token from the CPU, through layer 1 in detail, through the other 79 layers, and back out as the next token. Watch which parts light up and how much data moves."
+      "Below: one token's trip from the CPU, through layer 1 in detail, through the other 79 layers, and back out as the next token."
     )}
     ${see("What does the GPU do, step by step, to generate one token?", `
       ${player("tg-pl")}
@@ -869,7 +869,7 @@ topic({
       "Memory can be <b>big</b> or <b>fast</b>, but not both. The fastest memory must sit right next to the circuits, where there is very little room, and signals that travel further take longer.",
       "So the GPU arranges memory in <b>levels</b>: <b>registers</b> inside each core, <b>SRAM</b> on the chip beside the cores, an <b>L2 cache</b> between, and <b>HBM</b> beside the chip. Each level further from the cores holds more but takes longer to reach."
     )}
-    ${see("How big and how fast is each level? Click a level.", `
+    ${see("How big and how fast is each level?", `
       <div class="grid2" style="grid-template-columns:minmax(240px,1fr) minmax(260px,1.2fr);align-items:start">
         <div class="pyramid" id="t8-pyr"></div>
         <div id="t8-detail" class="stage-panel"></div>
@@ -878,7 +878,7 @@ topic({
       ${note("Sizes and speeds are shown as relative orders of magnitude, not measured specs. Operations do <b>not</b> literally pass through every level in order: data moves from larger, slower memory toward smaller, faster memory near the cores when and where the kernel needs it.")}`)}
     ${see("Which levels does one decode step lean on?", `
       <div class="btn-row"><button type="button" class="btn primary" id="t8-play">▶ Walk through one decode step</button></div>
-      <div class="stage-panel" id="t8-walk" style="min-height:70px"><p class="c-muted">Press play to follow a token through one layer.</p></div>`, "Watch it")}
+      <div class="stage-panel" id="t8-walk" style="min-height:70px"><p class="c-muted">One decode step, level by level.</p></div>`, "Watch it")}
     ${ex(`<div class="calc">70B-class model in FP16: 140 GB of weights → only HBM is big enough<br>
       One 8,192-number token vector: 16 KB → fits easily in on-chip SRAM<br>
       One multiply: two numbers → registers</div>`)}

@@ -206,7 +206,7 @@ topic({
       s += `<rect x="310" y="250" width="100" height="34" rx="6" fill="${phase === 3 ? "var(--ok)" : "var(--surface-2)"}" stroke="var(--ink)"/><text x="360" y="272" text-anchor="middle" font-size="13" font-weight="700" ${phase === 3 ? 'style="fill:#fff"' : ""}>Y</text>
         <text x="360" y="232" text-anchor="middle" font-size="11" class="muted">${link === "nvlink" ? "NVLink: fast exchange" : "PCIe: slow exchange"}</text>`;
       svg.innerHTML = s;
-      $("#t28-cap", root).innerHTML = phase < 0 ? `<p class="c-muted">Press “Run one layer”.</p>` : `<div class="mini-label">Step ${phase + 1} of 4</div><p>${caps[phase]}</p>`;
+      $("#t28-cap", root).innerHTML = phase < 0 ? `<p class="c-muted">One layer in four steps: send X, multiply slices, combine, pass on.</p>` : `<div class="mini-label">Step ${phase + 1} of 4</div><p>${caps[phase]}</p>`;
       const compute = 10 / N, comm = N === 1 ? 0 : (link === "nvlink" ? 1.2 : 9) * (N === 4 ? 1.3 : 1);
       const tot = compute + comm, base = 10;
       $("#t28-time", root).innerHTML = `<span class="s-act" style="width:${compute / Math.max(base, tot) * 100}%">compute</span><span class="s-kv" style="width:${comm / Math.max(base, tot) * 100}%">${comm > 1.5 ? "communicate" : ""}</span><span class="s-free" style="flex:1">${tot < base ? `${fmt(base / tot, 1)}× faster than 1 GPU` : "slower than 1 GPU!"}</span>`;

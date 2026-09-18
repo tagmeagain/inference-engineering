@@ -72,7 +72,7 @@ topic({
       "Every weight is a number, and every number takes some bits to store. <b>Fewer bits = less memory</b>, but also fewer possible values, so numbers get rounded.",
       "The whole game of precision is choosing <b>how few bits you can use</b> before the model's answers get worse."
     )}
-    ${see("What does each format look like in bits? Click one.", `
+    ${see("What does each format look like in bits?", `
       <div class="grid3" id="t19-cards"></div>
       <div class="stage-panel" id="t19-detail"></div>
       <div class="btn-row" style="gap:16px;font-size:.8rem"><span><span class="pill" style="background:var(--kv);color:#fff">s</span> sign</span><span><span class="pill" style="background:var(--memory);color:#fff">e</span> exponent (range)</span><span><span class="pill compute">m</span> mantissa (detail)</span><span><span class="pill" style="background:var(--accent);color:#fff">i</span> integer</span></div>`)}

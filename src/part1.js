@@ -14,7 +14,7 @@ topic({
   render: () => `
     ${say(
       "Inference means <b>using</b> a trained model to produce text. The weights are fixed; nothing is learned.",
-      "The model reads the text so far, predicts <b>one</b> next token, adds it to the text, and runs again. Press <b>Play</b> to watch every step for the prompt “Why is the sky”."
+      "The model reads the text so far, predicts <b>one</b> next token, adds it to the text, and runs again. Example prompt: “Why is the sky”."
     )}
     ${see("What happens between sending a prompt and getting the answer?", `
       ${player("t1-pl")}
@@ -455,7 +455,7 @@ topic({
       }).join("");
 
       let comb = "";
-      if (f.intro) comb = `<div class="col-title">Attention</div><p style="font-size:.9rem">Prefill already stored a Key row and a Value row for <b>Make</b>, <b>me</b> and <b>sound</b>, and produced the first new token <b>“smart”</b>.</p><p style="font-size:.9rem">Press <b>Play</b> to process “smart”.</p>`;
+      if (f.intro) comb = `<div class="col-title">Attention</div><p style="font-size:.9rem">Prefill already stored a Key row and a Value row for <b>Make</b>, <b>me</b> and <b>sound</b>, and produced the first new token <b>“smart”</b>.</p>`;
       else if (s < 3) comb = `<div class="col-title">Attention</div><p class="c-muted" style="font-size:.9rem">Waiting for this token's Query, Key and Value.</p>`;
       else {
         comb = `<div class="col-title">Attention</div>
